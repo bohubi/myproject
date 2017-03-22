@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Items</title>
+</head>
+<body>
+<ul>
+    {% for item in foods %}
+
+    <li> {{item.name}} - ({{item.ing}}) - {{item.price}}K.D</li>
+
+    {% endfor %}
+</ul>
+</body>
+</html>

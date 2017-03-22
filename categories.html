@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+</head>
+<body>
+<ul>
+    {% for category in restaurant.menucategory_set.all %}
+
+    <a href="/my_talabat/{{category.id}}/items">
+        <li> {{category.name}}</li>
+    </a>
+
+    {% endfor %}
+</ul>
+
+<!--<ul>-->
+<!--{% for category in categories %}-->
+
+<!--<li> {{category.name}}</li>-->
+
+<!--{% endfor %}-->
+<!--</ul>-->
+</body>
+</html>

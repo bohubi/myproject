@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurants</title>
+</head>
+<body>
+<ul>
+    {% for restaurant in y %}
+    <li>
+        <a href="/my_talabat/{{restaurant.id}}/">{{restaurant.name}} </a> - {{restaurant.location}} -
+        {{restaurant.number}}
+    </li>
+    {% endfor %}
+</ul>
+
+
+</body>
+</html>
