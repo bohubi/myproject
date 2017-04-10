@@ -10,7 +10,7 @@ def fat_locations(request):
     return render(request, "restaurants.html", context)
 
 
-def res_cat(request, restaurant_id):
+'''def res_cat(request, restaurant_id):
     context = {}
     restaurant = Restaurant.objects.get(id=restaurant_id)
     categories = MenuCategory.objects.filter(res=restaurant)
@@ -29,4 +29,4 @@ def items(request, cat_id):
     foods = MenuItem.objects.filter(cat=category)
 
     context["foods"] = foods
-    return render(request, "items.html", context)
+    return render(request, "items.html", context)'''

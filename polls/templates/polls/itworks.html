@@ -1,0 +1,20 @@
+
+{% extends 'polls/base.html'%}
+{% load static %}
+
+{% block header %}
+<h3>It Works!</h3>
+{% endblock %}
+
+{% block content %}
+<div class="panel default-panel">
+{% for x in cont %}
+<h2>{{x}}</h2>
+
+{% endfor %}
+</div>
+{% endblock %}
+
+<!--<h2> {{a}} </h2>-->
+<!--<h2> {{b}} </h2>-->
+<!--<h2> {{c}} </h2>-->

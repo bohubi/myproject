@@ -1,0 +1,41 @@
+{% extends 'polls/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block header %}
+{{ question.question_text }}
+{% endblock %}
+
+{% block content %}
+<div class="panel panel-default">
+    Form goes here
+    <form action="{% url 'polls:edit' question.id %}" method="POST">
+        {% csrf_token %}
+        {{ form | crispy}}
+    <input type="submit">
+    </form>
+</div>
+
+<h1> choices:</h1>
+{% for choice in question.choice_set.all %}
+<h2> {{ choice.choice_text}}</h2>
+
+  <a href="{% url 'polls:edit_choice' choice.id %}" class="btn btn-primary">Edit</a>
+<form action="{% url 'polls:delete_choice' choice.id %}" method="POST">
+                    {% csrf_token %}
+                    <input class="btn btn-danger"
+                           type="submit"
+                           value="Delete"/>
+
+</form>
+{% endfor %}
+
+<form action="{% url 'polls:add_choice' %}" method="post">
+    {% csrf_token %}
+    {{ choice_form | crispy }}
+    <input type="submit" class="btn" value="Add a choice!">
+
+</form>
+
+
+
+{% endblock %}

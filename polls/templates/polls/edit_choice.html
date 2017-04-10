@@ -1,0 +1,23 @@
+{% extends 'polls/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block header %}
+{{ question.question_text }}
+{% endblock %}
+
+{% block content %}
+
+
+<h1> Edit the Choice</h1>
+
+
+<form action="{% url 'polls:edit_choice' choice.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <input class="btn btn-primary"
+                           type="submit"
+                           value="Edit"/>
+</form>
+
+
+{% endblock %}
