@@ -75,7 +75,7 @@ def add_question(request):
         form = Myform(request.POST)
         if form.is_valid():
             question_text = form.cleaned_data['question_name']
-            q = Question(question_text=question_text, pub_date=timezone.now())
+            q = Question(question_text=question_text, pub_date=timezone.now(), owner=request.user)
             q.save()
             messages.add_message(request, messages.SUCCESS, "You have successfully added a poll")
             return redirect('polls:index')
@@ -126,16 +126,17 @@ def add_choice(request):
         return redirect ("polls:index")
 
 
-
 def delete_question(request, question_id):
-   if request.method == "POST":
+    if request.method == "POST":
         question = Question.objects.get(id=question_id)
-        question.delete()
-        messages.add_message(request, messages.WARNING, "Question Gone!")
+        if question.owner == request.user:
+            question.delete()
+            messages.add_message(request, messages.WARNING, "Question Gone!")
+            return redirect("polls:index")
+        else:
+            return redirect("polls:oops")
+    else:
         return redirect("polls:index")
-   else:
-       return redirect("polls:index")
-
 
 
 def delete_choice(request, choice_id):

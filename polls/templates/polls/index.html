@@ -18,19 +18,23 @@
     <div class="panel-body">
         {% for question in questions %}
         <div class="row">
-            <div class="col col-xs-6 col-sm-8 col-md-8 col-lg-10">
+            <div class="col col-xs-6 col-sm-8">
                 <h4>{{question.question_text}}</h4>
+                <p>{{ question.pub_date }} made by {{ question.owner }}</p>
+
             </div>
-            <div class="col col-xs-6 col-sm-4 col-md-4 col-lg-2">
+            <div class="col col-xs-6 col-sm-4">
                 <!--<a href="{{q.id}}" class="btn btn-primary">view poll</a>-->
                 <a href="{% url 'polls:detail' question.id %}" class="btn btn-primary">view poll</a>
                 <a href="{% url 'polls:edit' question.id %}" class="btn btn-primary">Edit</a>
                 <form action="{% url 'polls:delete_question' question.id %}"
                       method="post" style="display: inline-block">
                     {% csrf_token %}
+                    {% if question.owner == request.user %}
                     <input class="btn btn-danger"
                            type="submit"
                            value="Delete"/>
+                    {% endif %}
 
                 </form>
             </div>
