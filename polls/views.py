@@ -198,3 +198,23 @@ def signin(request):
         messages.add_message(request, messages.SUCCESS, "You are now logged in")
         return redirect("polls:index")
 
+
+def register(request):
+    if request.method == 'GET':
+        form = forms.SignupForm()
+        context = {'form': form}
+        return render(request, "polls/register.html", context)
+    else:
+        form = forms.SignupForm(request.POST)
+        if not form.is_valid():
+            messages.add_message(request, messages.WARNING, "Invalid form data, try again")
+            context = {'form': form}
+            return render(request, "polls/register.html", context)
+        # form is valid, so, proceed
+        password =form.data.get("password")
+        user = form.save()
+        user.set_password(password)
+        user.save()
+        messages.add_message(request, messages.SUCCESS, "User Created")
+        return redirect("polls:register")
+

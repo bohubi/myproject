@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^question/(?P<choice_id>[0-9]+)/edit_choice/$', views.edit_choice, name="edit_choice"),
     url(r'^question/(?P<choice_id>[0-9]+)/delete_choice/$', views.delete_choice, name="delete_choice"),
     url(r'^signin/$', views.signin, name='signin'),
+    url(r'^register/$', views.register, name='register'),
 #     url(r'^question/create/$',views.todo),
 #     url(r'^choice/(?P<choice_id>[0-9]+)/edit/$', views.todo),
 #     url(r'^choice/(?P<choice_id>[0-9]+)/update/$', views.todo),
