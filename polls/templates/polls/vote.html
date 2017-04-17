@@ -1,0 +1,10 @@
+{% extends 'polls/base.html'%}
+{% load crispy_forms_tags %}
+{% block header %}
+<h3>{{ question.question_text }}</h3>
+    <h3>{{ choice.choice_text }} : {{ choice.votes }} votes</h3>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^question/(?P<choice_id>[0-9]+)/delete_choice/$', views.delete_choice, name="delete_choice"),
     url(r'^signin/$', views.signin, name='signin'),
     url(r'^register/$', views.register, name='register'),
+    url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
 #     url(r'^question/create/$',views.todo),
 #     url(r'^choice/(?P<choice_id>[0-9]+)/edit/$', views.todo),
 #     url(r'^choice/(?P<choice_id>[0-9]+)/update/$', views.todo),
@@ -25,7 +26,7 @@ urlpatterns = [
 #     url(r'^choice/create/$',views.todo),
     ]
 
-    #url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
+
     # url(r'^question/(?P<question_id>[0-9]+)/results/$', views.detail, name='results'),
 """"# ex: /polls/5/
    url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),

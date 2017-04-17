@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'tvguide',
     'django_extensions',
+    'livereload',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'mysite.urls'

@@ -5,7 +5,7 @@ from django.utils import timezone
 
 from polls import forms
 from polls.models import Question, Choice
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from polls.forms import Myform
 
 
@@ -46,12 +46,15 @@ def detail(request, question_id):
     return render(request, "polls/detail.html", {'question': q})
 
 
-# def vote(request, HttpRequest, question_id):
-#     cid = request.POST.get("choice")
-#     c = Choice.objects.get(id=cid)
-#     c.votes += 1
-#     c.save()
-#     return HttpResponseRedirect(redirect_to=reverse('results', args=[question_id]))
+def vote(request, question_id):
+    choice_id = request.POST.get("choice")
+    choice = Choice.objects.get(id=choice_id)
+    choice.votes += 1
+    choice.save()
+    context = {"choice":choice, "question":Question.objects.get(id=question_id)}
+    #return HttpResponse("%s has %d votes" %(choice, choice.votes))
+    #return HttpResponseRedirect(redirect_to=reverse('results', args=[question_id]))
+    return render(request, "polls/vote.html", context)
 
 
 def results(request, question_id):

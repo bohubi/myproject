@@ -6,7 +6,8 @@
 
 {% block content %}
 <div class="panel panel-default">
-    <form action="{% url 'polls:detail' question.id %}" method=" post">
+
+    <form  action="{% url 'polls:vote' question.id %}" method="post">
         {% csrf_token %}
         {% for choice in question.choice_set.all %}
         <input type="radio" name="choice" value="{{ choice.id }}">
