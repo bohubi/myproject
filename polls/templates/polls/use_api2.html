@@ -1,0 +1,18 @@
+{% extends 'polls/base.html'%}
+{% load static %}
+{% block header %}
+testing api'2
+{% endblock %}
+
+{% block content %}
+{{ code }}
+    {{ r }}
+<hr>
+    {{ r.header }}
+    <hr>
+    {{ r.text }}
+    <hr>
+    Hello ()
+    <img src="{{ u.user.profile_picture }}">
+
+{% endblock %}

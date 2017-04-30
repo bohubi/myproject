@@ -1,0 +1,17 @@
+{% extends 'polls/base.html' %}
+{% load static %}
+{% block header %}
+    testing api's
+{% endblock %}
+
+{% block content %}
+        <a href="https://api.instagram.com/oauth/authorize/?client_id=29c4170223c24304b159d0d3b4546579&redirect_uri=http://localhost:8000/polls/use_api2/&response_type=code">Redirect</a>
+
+{% comment %}
+{% for event in events %}
+<img src="{{ event.actor.avatar_url }}">
+{% endfor %}
+{% endcomment %}
+{% endblock %}
+
+{#event.actor.avatar_url#}

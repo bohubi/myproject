@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'tvguide',
     'django_extensions',
     'livereload',
+    'rest_framework',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+              crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+    </head>
+
+    <body>
+        <h2>Thats your Geolocation by google maps api dynamic streetview and fixed sateliteview!</h2>
+        <h3>Your current location is <b id="loc">unknown</b></h3>
+
+        <div>
+            <iframe id="mymovmap"
+                    width="600"
+                    height="450"
+                    frameborder="0"
+                    style="border:0">
+                //the src was a specific location in the next line but we commented it out to make it move to
+                // the ceter of the location we are watching (changes to the customer location shown in url2 below)
+                // pre-defined location with a dynamic google map: src =
+                //"https://www.google.com/maps/embed/v1/place?key=AIzaSyDd8uNk64SQ1B1z-ZKBhKP1Zy_q1QtXtys&q=29.3789917,47.9910573"allowfullscreen>
+                //in the upper line: after the q is the longitude and latitude where you can paste other locations
+                // if you want it fixed dont forget to take off url2 from the script below
+            </iframe>
+        </div>
+        <img id="mymap" width="600px" height="600px">
+        <script>
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+            //to follow the location of the user and show it on the map (watchPosition) instesd of (getPosition)
+            navigator.geolocation.watchPosition(
+                function (pos) {
+                    console.log("got position");
+                    console.log(pos);
+                    var center = pos.coords.latitude + "," + pos.coords.longitude;
+                    //var markers = "color:blue"
+                    var url = "https://maps.googleapis.com/maps/api/staticmap?center=" + center + "&zoom=18&size=400x300&maptype=satellite";
+                    var url2 = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDd8uNk64SQ1B1z-ZKBhKP1Zy_q1QtXtys&q=" + center;
+                    //"markers=" + encodeURIComponent(markers);
+                    document.getElementById("mymap").src = url;
+                    document.getElementById("loc").innerHTML = center;
+                    document.getElementById("mymovmap").src = url2;
+                },
+                function (err) {
+                    console.warn("cannot get position");
+                    console.warn(err);
+                },
+                options)
+
+
+        </script>
+
+
+    </body>
+
+</html>
+

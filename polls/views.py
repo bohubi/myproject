@@ -221,3 +221,31 @@ def register(request):
         messages.add_message(request, messages.SUCCESS, "User Created")
         return redirect("polls:register")
 
+def use_api(request):
+    import requests
+    # url = "http://api.github.com/events"
+    # r = requests.get(url)
+    # events = r.json()
+    # context = {'events': events}
+    return render(request, "polls/use_api.html", {})
+
+
+def use_api2(request):
+    import requests
+    code = request.GET.get("code")
+    url = "https://api.instagram.com/oauth/access_token"
+    r = requests.post(url, data={
+        'client_id':'29c4170223c24304b159d0d3b4546579',
+        'client_secret':'3628fbe4f4af4badade334945ee2ba62',
+        'grant_type':'authorization_code',
+        'redirect_uri' : 'http://localhost:8000/polls/use_api2/',
+        'code': code,
+    })
+    # print("code is" + code)
+    return render(request, "polls/use_api2.html", {"code":code, "r":r, "u":r.json()})
+
+# def InstaUser(AbstractBaseUser):
+#     access_token =
+
+def maps(request):
+    return render(request, "polls/maps.html", {})
